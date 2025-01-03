@@ -16,16 +16,16 @@ export class LoginComponent {
     email: '',
     password: ''
   }
+router=inject(Router);
 
-  router = inject(Router);
-
-  onLogin() {
-    console.log('Login object:', this.loginObj); // Debugging the login object
-    if (this.loginObj.email === 'admin@gmail.com' && this.loginObj.password === '1234') {
-      this.router.navigateByUrl('layout');
-    } else {
-      alert('Wrong credentials');
+  onLogin(){
+    if(this.loginObj.email == "admin@gmail.com" && this.loginObj.password == "12345"){
+      this.router.navigateByUrl("dashboard")
+    }
+    else{
+      alert("Wrong Credentials");
     }
   }
+
 
 }
