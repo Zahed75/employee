@@ -1,18 +1,17 @@
-import {Routes} from '@angular/router';
-import {LoginComponent} from './components/login/login.component';
-import {LayoutComponent} from './components/layout/layout.component';
-import {DashboardComponent} from './components/dashboard/dashboard.component';
+import { Routes } from '@angular/router';
+import { LayoutComponent } from './components/layout/layout.component';
+import { DashboardComponent } from './components/dashboard/dashboard.component';
+import {SignInComponent} from './components/sign-in/sign-in.component';
 
 export const routes: Routes = [
-
   {
     path: '',
-    redirectTo: 'login',
-    pathMatch: 'full'
+    redirectTo: 'signIn',
+    pathMatch: 'full',
   },
   {
-    path: 'login',
-    component: LoginComponent
+    path: 'signIn',
+    component: SignInComponent,
   },
   {
     path:'',
