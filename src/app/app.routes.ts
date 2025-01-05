@@ -2,6 +2,7 @@ import { Routes } from '@angular/router';
 import { LayoutComponent } from './components/layout/layout.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import {SignInComponent} from './components/sign-in/sign-in.component';
+import {authGuard} from './guard/auth.guard';
 
 export const routes: Routes = [
   {
@@ -12,6 +13,7 @@ export const routes: Routes = [
   {
     path: 'signIn',
     component: SignInComponent,
+
   },
   {
     path:'',
@@ -19,8 +21,10 @@ export const routes: Routes = [
     children:[
       {
         path:'dashboard',
-        component:DashboardComponent
+        component:DashboardComponent,
+        canActivate:[authGuard],
       }
     ]
+
   }
 ];
