@@ -23,9 +23,9 @@ export class SignInComponent {
   onLogin() {
     this.http.post('https://app.bestelectronics.com.bd/api/v1/auth/signInAdmin', this.apiLoginObj).subscribe(
       (res: any) => {
-
         if (res && res.user && res.user.userId) {
           localStorage.setItem('user', res.user.userId);
+          localStorage.setItem('token',res.user.token);
           this.router.navigateByUrl('dashboard');
         } else {
           alert('Invalid response data');
