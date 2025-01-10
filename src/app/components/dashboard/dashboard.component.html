@@ -1,85 +1,84 @@
-<button (click)="toggleSideMenu()" class="toggle-button">
-  ☰ Toggle Menu
-</button>
 
-<div class="p-4 sm:ml-64">
-  <div class="p-4">
-    <!-- Dashboard Title -->
-    <h1 class="text-3xl font-bold text-[black] mb-6">Dashboard</h1>
 
-    <!-- Overview Section -->
-    <h3 class="text-xl font-semibold text-[black] mb-4">Overview</h3>
+<div class="flex flex-row">
+  <!-- Main Content -->
+  <div class="p-4 sm:ml-64 w-full">
+    <div>
+      <h1 class="text-3xl font-bold text-[black] mb-6">Dashboard</h1>
+      <h3 class="text-xl font-semibold text-[black] mb-4">Overview</h3>
 
-    <!-- Top Section with 4 Boxes -->
-    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-6">
-      <div class="flex flex-col items-start justify-center h-24 rounded-lg bg-gray-50 shadow-md dark:bg-gray-800 p-4">
-        <p class="text-sm text-gray-500 dark:text-gray-400">Total Sales</p>
-        <h2 class="text-2xl font-bold text-black dark:text-white">43,243</h2>
+      <!-- Responsive Boxes -->
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-6">
+        <div
+          class="flex flex-col items-start justify-center h-24 rounded-lg bg-gray-50 shadow-md dark:bg-gray-800 p-4"
+        >
+          <p class="text-sm text-gray-500 dark:text-gray-400">Total Sales</p>
+          <h2 class="text-2xl font-bold text-black dark:text-white">43,243</h2>
+        </div>
       </div>
-      <div class="flex flex-col items-start justify-center h-24 rounded-lg bg-gray-50 shadow-md dark:bg-gray-800 p-4">
-        <p class="text-sm text-gray-500 dark:text-gray-400">New Orders</p>
-        <h2 class="text-2xl font-bold text-black dark:text-white">1,345</h2>
-      </div>
-      <div class="flex flex-col items-start justify-center h-24 rounded-lg bg-gray-50 shadow-md dark:bg-gray-800 p-4">
-        <p class="text-sm text-gray-500 dark:text-gray-400">Pending Issues</p>
-        <h2 class="text-2xl font-bold text-black dark:text-white">23</h2>
-      </div>
-      <div class="flex flex-col items-start justify-center h-24 rounded-lg bg-gray-50 shadow-md dark:bg-gray-800 p-4">
-        <p class="text-sm text-gray-500 dark:text-gray-400">Total Revenue</p>
-        <h2 class="text-2xl font-bold text-black dark:text-white">$56,789</h2>
+
+      <!-- User Table -->
+      <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
+        <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
+          <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+          <tr>
+            <th class="p-4">
+              <input
+                id="checkbox-all-search"
+                type="checkbox"
+                (change)="toggleSelectAll($event)"
+              />
+            </th>
+            <th class="px-6 py-3">User</th>
+            <th class="px-6 py-3">Email</th>
+            <th class="px-6 py-3">Phone</th>
+            <th class="px-6 py-3">Role</th>
+            <th class="px-6 py-3">Active Status</th>
+            <th class="px-6 py-3">Actions</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr
+            *ngFor="let user of users; let i = index"
+            class="bg-white border-b dark:bg-gray-800 dark:border-gray-700"
+          >
+            <td class="p-4">
+              <input
+                type="checkbox"
+                [checked]="user.isSelected"
+                (change)="toggleUserSelection(user, $event)"
+              />
+            </td>
+            <th class="px-6 py-4 font-medium text-gray-900 dark:text-white">
+              {{ user.firstName || 'N/A' }}
+            </th>
+            <td class="px-6 py-3">{{ user.email }}</td>
+            <td class="px-6 py-3">{{ user.phone }}</td>
+            <td class="px-6 py-3">{{ user.role }}</td>
+            <td class="px-6 py-3">
+              {{ user.isActive ? 'Active' : 'Inactive' }}
+            </td>
+            <td class="px-6 py-3 flex space-x-4">
+              <button
+                (click)="editUser()"
+                class="bg-blue-500 text-white px-2 py-1 rounded hover:bg-blue-600"
+              >
+                Edit
+              </button>
+              <button
+                (click)="removeUser()"
+                class="bg-red-500 text-white px-2 py-1 rounded hover:bg-red-600"
+              >
+                Remove
+              </button>
+            </td>
+          </tr>
+          </tbody>
+        </table>
       </div>
     </div>
   </div>
 </div>
-
-
-
-
-<div class="relative overflow-x-auto shadow-md sm:rounded-lg">
-  <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
-    <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
-    <tr>
-      <th class="p-4">
-        <input id="checkbox-all-search" type="checkbox" (change)="toggleSelectAll($event)" />
-      </th>
-      <th class="px-6 py-3">User</th>
-      <th class="px-6 py-3">Email</th>
-      <th class="px-6 py-3">Phone</th>
-      <th class="px-6 py-3">Role</th>
-      <th class="px-6 py-3">Active Status</th>
-      <th class="px-6 py-3">Outlet</th>
-      <th class="px-6 py-3">Created At</th>
-      <th class="px-6 py-3">Action</th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr *ngFor="let user of users; let i = index" class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
-      <td class="p-4">
-        <input type="checkbox" [checked]="user.isSelected" (change)="toggleUserSelection(user, $event)" />
-      </td>
-      <th class="px-6 py-4 font-medium text-gray-900 dark:text-white">
-        {{ user.firstName || 'N/A' }}
-      </th>
-      <td class="px-6 py-4">{{ user.email || 'N/A' }}</td>
-      <td class="px-6 py-4">{{ user.phone || 'N/A' }}</td>
-      <td class="px-6 py-4">{{ user.role || 'N/A' }}</td>
-      <td class="px-6 py-4">{{ user.activeStatus ? 'Active' : 'Inactive' }}</td>
-      <td class="px-6 py-4">{{ user.outlet || 'N/A' }}</td>
-      <td class="px-6 py-4">{{ user.createdAt | date: 'short' }}</td>
-      <td class="flex items-center px-6 py-4">
-        <a (click)="editUser()" class="text-blue-600 hover:underline">Edit</a>
-        <a (click)="removeUser()" class="text-red-600 hover:underline ms-3">Remove</a>
-      </td>
-    </tr>
-    </tbody>
-  </table>
-</div>
-
-
-
-
-<router-outlet></router-outlet>
-
 
 
 

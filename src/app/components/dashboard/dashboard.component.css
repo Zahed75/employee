@@ -1,0 +1,28 @@
+#separator-sidebar {
+  width: 16rem;
+  background-color: #f9fafb;
+  transition: transform 0.3s ease;
+}
+
+.sm\\:ml-64 {
+  margin-left: 16rem;
+}
+
+.translate-x-0 {
+  transform: translateX(0);
+}
+
+.-translate-x-full {
+  transform: translateX(-100%);
+}
+
+.toggle-button {
+  background-color: #3b82f6;
+  color: white;
+  padding: 0.5rem 1rem;
+  border-radius: 0.25rem;
+}
+
+.toggle-button:hover {
+  background-color: #2563eb;
+}
