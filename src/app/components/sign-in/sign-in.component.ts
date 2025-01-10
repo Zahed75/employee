@@ -25,7 +25,7 @@ export class SignInComponent {
       (res: any) => {
         if (res && res.user && res.user.userId) {
           localStorage.setItem('user', res.user.userId);
-          localStorage.setItem('token',res.user.token);
+          localStorage.setItem('token',res.user.accessToken);
           this.router.navigateByUrl('dashboard');
         } else {
           alert('Invalid response data');
