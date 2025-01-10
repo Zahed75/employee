@@ -1,28 +1,31 @@
-#separator-sidebar {
-  width: 16rem;
-  background-color: #f9fafb;
-  transition: transform 0.3s ease;
+.bg-green-100 {
+  background-color: #d1fae5; /* Light green */
 }
 
-.sm\\:ml-64 {
-  margin-left: 16rem;
+.text-green-800 {
+  color: #065f46; /* Dark green */
 }
 
-.translate-x-0 {
-  transform: translateX(0);
+.bg-red-100 {
+  background-color: #fee2e2; /* Light red */
 }
 
-.-translate-x-full {
-  transform: translateX(-100%);
+.text-red-800 {
+  color: #b91c1c; /* Dark red */
 }
 
-.toggle-button {
-  background-color: #3b82f6;
-  color: white;
-  padding: 0.5rem 1rem;
-  border-radius: 0.25rem;
+.rounded-full {
+  border-radius: 9999px;
 }
 
-.toggle-button:hover {
-  background-color: #2563eb;
+.font-semibold {
+  font-weight: 600;
+}
+
+.text-xs {
+  font-size: 0.75rem;
+}
+
+.inline-flex {
+  display: inline-flex;
 }

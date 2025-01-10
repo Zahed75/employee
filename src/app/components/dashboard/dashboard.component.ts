@@ -1,13 +1,11 @@
-import { Component, OnInit } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { RouterOutlet } from '@angular/router';
-import { NgFor, CommonModule } from '@angular/common';
-import {LayoutComponent} from '../layout/layout.component'; // Add CommonModule
+import {Component, OnInit} from '@angular/core';
+import {HttpClient} from '@angular/common/http';
+import {NgFor, CommonModule} from '@angular/common';
 
 @Component({
   selector: 'app-dashboard',
   standalone: true,
-  imports: [ NgFor, CommonModule], // Import CommonModule here
+  imports: [NgFor, CommonModule], // Import CommonModule here
   templateUrl: './dashboard.component.html',
   styleUrls: ['./dashboard.component.css'],
 })
@@ -16,7 +14,8 @@ export class DashboardComponent implements OnInit {
 
   users: any[] = []; // Store user list
 
-  constructor(private httpClient: HttpClient) {}
+  constructor(private httpClient: HttpClient) {
+  }
 
   toggleSideMenu(): void {
     this.sideMenuOpen = !this.sideMenuOpen; // Toggle sidebar
@@ -54,7 +53,7 @@ export class DashboardComponent implements OnInit {
     // Edit user functionality here
   }
 
-  removeUser():void{
+  removeUser(): void {
 
   }
 
