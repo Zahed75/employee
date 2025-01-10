@@ -1,5 +1,6 @@
 import {Component, inject} from '@angular/core';
 import {Router, RouterLink, RouterOutlet} from '@angular/router';
+import {DashboardComponent} from '../dashboard/dashboard.component';
 
 
 @Component({
@@ -12,12 +13,22 @@ import {Router, RouterLink, RouterOutlet} from '@angular/router';
 })
 export class LayoutComponent {
 
-  router = inject(Router)
+  router = inject(Router);
+  // dashService = inject(DashboardComponent)
+
+  // constructor() {
+  //   this.dashService.tokenExpired$.subscribe((res: boolean) => {
+  //     if(Res){
+  //
+  //     }
+  //   })
+  // }
 
   logOut() {
     localStorage.removeItem('user')
     this.router.navigateByUrl("login")
   }
+
 
 
 }

@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {NgFor, CommonModule} from '@angular/common';
+import {Subject} from 'rxjs';
 
 @Component({
   selector: 'app-dashboard',
@@ -14,13 +15,18 @@ export class DashboardComponent implements OnInit {
 
   users: any[] = []; // Store user list
 
+
+  // Refresh Token
+  tokenExpired$: Subject<boolean> = new Subject<boolean>();
+
+
   constructor(private httpClient: HttpClient) {
   }
 
-  toggleSideMenu(): void {
-    this.sideMenuOpen = !this.sideMenuOpen; // Toggle sidebar
-  }
 
+
+
+  // sideBar Menu
   toggleSelectAll(event: any): void {
     this.users.forEach((user) => (user.isSelected = event.target.checked));
   }
@@ -28,6 +34,10 @@ export class DashboardComponent implements OnInit {
   toggleUserSelection(user: any, event: any): void {
     user.isSelected = event.target.checked;
   }
+
+
+  // Sidebar End
+
 
   ngOnInit(): void {
     this.getUsers(); // Fetch users on initialization
@@ -59,3 +69,6 @@ export class DashboardComponent implements OnInit {
 
 }
 
+export class DashboardService {
+  tokenExpired$: any;
+}

@@ -23,9 +23,14 @@ export class SignInComponent {
   onLogin() {
     this.http.post('https://app.bestelectronics.com.bd/api/v1/auth/signInAdmin', this.apiLoginObj).subscribe(
       (res: any) => {
-        if (res && res.user && res.user.userId) {
-          localStorage.setItem('user', res.user.userId);
-          localStorage.setItem('token',res.user.accessToken);
+        if (res && res.user) {
+          // Store the entire user object in localStorage
+          localStorage.setItem('user', JSON.stringify(res.user));
+          // Store the accessToken and refreshToken separately (optional)
+          localStorage.setItem('token', res.user.accessToken);
+          localStorage.setItem('refreshToken', res.user.refreshToken);
+
+          // Navigate to the dashboard
           this.router.navigateByUrl('dashboard');
         } else {
           alert('Invalid response data');
@@ -36,4 +41,5 @@ export class SignInComponent {
       }
     );
   }
+
 }
